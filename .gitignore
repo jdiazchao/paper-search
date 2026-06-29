@@ -1,0 +1,7 @@
+# PaperArena runtime state
+.paperarena/
+*.tmp
+
+# Python
+__pycache__/
+*.pyc

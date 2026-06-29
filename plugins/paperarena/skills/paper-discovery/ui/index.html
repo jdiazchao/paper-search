@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PaperArena</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <!-- Background: the current paper's PDF, always visible -->
+    <div class="reader-bg" id="reader-bg">
+      <div class="tabbar">
+        <div class="tabs" id="tabs"></div>
+        <button class="tab-done" id="done-send" type="button" aria-label="Done" disabled>Done</button>
+      </div>
+      <div class="reader-body" id="reader-body">
+        <div class="reader-status" id="reader-status">Loading&hellip;</div>
+        <div class="reader-pages" id="reader-pages"></div>
+      </div>
+    </div>
+
+    <!-- Floating HUD: the swipe card + controls, overlaid on the PDF -->
+    <div class="hud" id="hud">
+      <div class="controls" id="controls" hidden>
+        <button class="btn btn-dislike" id="btn-dislike" aria-label="Dislike"><span class="ic" aria-hidden="true">👎</span> Dislike</button>
+        <div class="reason-shortcuts" id="reason-shortcuts" aria-label="Decision shortcuts"></div>
+        <button class="btn btn-like" id="btn-like" aria-label="Like"><span class="ic" aria-hidden="true">👍</span> Like</button>
+      </div>
+      <div class="deck" id="deck">
+        <div class="placeholder" id="placeholder">Loading deck&hellip;</div>
+      </div>
+      <p class="hint" id="hint" hidden>Swipe to decide &middot; use the chevrons or arrow keys to browse</p>
+    </div>
+
+    <div class="zoombar" id="zoombar">
+      <button id="zoom-out" aria-label="Zoom out">&#8722;</button>
+      <span id="zoom-level">100%</span>
+      <button id="zoom-in" aria-label="Zoom in">&#43;</button>
+      <button id="zoom-fit" aria-label="Fit width">Fit</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

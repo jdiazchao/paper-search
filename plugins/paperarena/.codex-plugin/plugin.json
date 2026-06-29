@@ -1,0 +1,26 @@
+{
+  "name": "paperarena",
+  "version": "0.1.0",
+  "description": "Discover and triage academic papers in a local swipe interface.",
+  "author": {
+    "name": "jdiazchao",
+    "url": "https://github.com/jdiazchao"
+  },
+  "homepage": "https://github.com/jdiazchao/paper-search",
+  "repository": "https://github.com/jdiazchao/paper-search",
+  "license": "MIT",
+  "keywords": ["research", "papers", "discovery", "literature-review"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PaperArena",
+    "shortDescription": "Find and triage research papers by swiping.",
+    "longDescription": "PaperArena helps discover academic papers, presents them in a private local swipe interface, and uses saved feedback to refine later recommendations.",
+    "developerName": "jdiazchao",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Research"],
+    "defaultPrompt": [
+      "Find papers about a topic and let me triage them.",
+      "Refine my paper recommendations from my feedback."
+    ]
+  }
+}

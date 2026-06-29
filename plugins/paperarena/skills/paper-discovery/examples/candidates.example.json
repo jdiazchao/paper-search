@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1503.06862",
+    "title": "Multi-terminal Josephson junctions as topological materials",
+    "month": "March",
+    "year": 2015,
+    "citations": null,
+    "venue": "arXiv; later published in Nature Communications",
+    "abstract": "This foundational proposal treats superconducting phases as synthetic crystal momenta and predicts Weyl singularities in multiterminal junctions. It is a strong starting point for understanding the modern topology program in these devices.",
+    "url": "https://arxiv.org/abs/1503.06862",
+    "suggested_reasons": [
+      {"emoji": "✨", "label": "Core fit", "decision": "like"},
+      {"emoji": "🧠", "label": "Too theoretical", "decision": "dislike"},
+      {"emoji": "🔁", "label": "Already know it", "decision": "dislike"}
+    ]
+  },
+  {
+    "id": "1612.05418",
+    "title": "Topological transconductance quantization in a four-terminal Josephson junction",
+    "month": "December",
+    "year": 2016,
+    "citations": null,
+    "venue": "arXiv; later published in Physical Review B",
+    "abstract": "This work connects the theoretical Weyl-junction proposal to a measurable transport signature. It studies when nonlocal transconductance remains quantized despite nonadiabatic transitions and relaxation.",
+    "url": "https://arxiv.org/abs/1612.05418",
+    "suggested_reasons": [
+      {"emoji": "🔬", "label": "Useful experiment", "decision": "like"},
+      {"emoji": "📐", "label": "Too specialized", "decision": "dislike"},
+      {"emoji": "🔁", "label": "Already know it", "decision": "dislike"}
+    ]
+  },
+  {
+    "id": "2211.12524",
+    "title": "Multi-terminal Josephson junctions: a road to topological flux networks",
+    "month": "November",
+    "year": 2022,
+    "citations": null,
+    "venue": "arXiv perspective; later published in Europhysics Letters",
+    "abstract": "This perspective traces multiterminal Josephson topology back to topological flux networks and early quantum Hall ideas. It offers historical context and a compact overview of the field's theoretical and experimental development.",
+    "url": "https://arxiv.org/abs/2211.12524",
+    "suggested_reasons": [
+      {"emoji": "🧭", "label": "Helpful overview", "decision": "like"},
+      {"emoji": "📚", "label": "Prefer primary work", "decision": "dislike"},
+      {"emoji": "🔁", "label": "Already know it", "decision": "dislike"}
+    ]
+  }
+]
