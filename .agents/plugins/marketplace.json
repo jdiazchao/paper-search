@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "paperarena",
+      "name": "paper-search",
       "source": {
         "source": "local",
-        "path": "./plugins/paperarena"
+        "path": "./plugins/paper-search"
       },
       "policy": {
         "installation": "AVAILABLE",

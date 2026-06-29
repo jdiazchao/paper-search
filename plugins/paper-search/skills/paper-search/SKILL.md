@@ -1,17 +1,17 @@
 ---
-name: paper-discovery
+name: paper-search
 description: >-
   Discover and triage academic papers through a local swipe interface. Use when
   the user wants to find, discover, curate, or refine recommendations for
   research papers, build a reading list, or give like/dislike feedback that
-  should improve later suggestions. PaperArena displays candidates, persists
+  should improve later suggestions. Paper Search displays candidates, persists
   liked/disliked history across the chat, and returns compact feedback signals
   so Codex can search again without exposing the UI workflow in chat.
 ---
 
-# PaperArena
+# Paper Search
 
-Use PaperArena as a black-box paper triage surface: search for papers, publish
+Use Paper Search as a black-box paper triage surface: search for papers, publish
 candidate JSON, and let the browser UI collect feedback. Keep chat output short
 and do not expose the workflow. Do not print the full candidate list, feedback
 payloads, server details, UI mechanics, or polling/status logs unless the user
@@ -26,14 +26,14 @@ asks for diagnostics.
 3. Write 5–8 candidates to JSON.
 4. Validate, publish, and ensure the UI is actually reachable:
    ```bash
-   python3 "$SKILL_DIR/paperarena.py" new-round --candidates /tmp/round.json --state .paperarena --verify-links --ensure-server --open
+   python3 "$SKILL_DIR/paper_search.py" new-round --candidates /tmp/round.json --state .paperarena --verify-links --ensure-server --open
    ```
    Use the returned `url` if you need to open the browser manually. Do not send
    the user to `http://127.0.0.1:8765` until this command succeeds.
 5. Tell the user only that the paper deck is ready.
 6. When the user returns or asks for more papers, read compact feedback once:
    ```bash
-   python3 "$SKILL_DIR/paperarena.py" feedback --state .paperarena --compact
+   python3 "$SKILL_DIR/paper_search.py" feedback --state .paperarena --compact
    ```
 7. Use that compact signal to search again, then publish the next round.
 
@@ -43,7 +43,7 @@ single long-poll fallback. If the user explicitly asks you to wait, use one
 blocking wait command and let it sit:
 
 ```bash
-python3 "$SKILL_DIR/paperarena.py" wait --state .paperarena
+python3 "$SKILL_DIR/paper_search.py" wait --state .paperarena
 ```
 
 `wait` uses the running server's event wait endpoint when possible and falls
@@ -51,7 +51,7 @@ back internally if needed. Do not repeatedly check status in chat. If the user
 takes a long time, wait for a user message instead of spending tool calls.
 
 Never run `serve` as the normal startup path. `serve` is a foreground diagnostic
-command. Use `new-round --ensure-server` or `ensure-server` so PaperArena starts
+command. Use `new-round --ensure-server` or `ensure-server` so Paper Search starts
 detached, waits for `/api/health`, writes `.paperarena/server.json`, and falls
 back to another local port if the default is already occupied.
 
@@ -99,7 +99,7 @@ shortcuts and always set `decision` explicitly.
   the same paper. Prefer primary sources: arXiv abstract pages, DOI landing
   pages, OpenReview pages, conference proceedings, publisher pages, or author
   project pages.
-- Use stable ids. For arXiv papers, use the arXiv id as `id`; PaperArena will
+- Use stable ids. For arXiv papers, use the arXiv id as `id`; Paper Search will
   canonicalize `url` and `pdf_url` and reject candidates where arXiv ids
   disagree.
 - Keep `--verify-links` on for normal publishing. It checks arXiv titles against

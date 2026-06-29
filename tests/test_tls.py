@@ -9,13 +9,13 @@ from urllib.error import URLError
 SKILL_DIR = (
     Path(__file__).resolve().parents[1]
     / "plugins"
-    / "paperarena"
+    / "paper-search"
     / "skills"
-    / "paper-discovery"
+    / "paper-search"
 )
 sys.path.insert(0, str(SKILL_DIR))
 
-import paperarena
+import paper_search
 
 
 ARXIV_RESPONSE = b"""\
@@ -36,13 +36,13 @@ class TlsFallbackTests(unittest.TestCase):
             ssl.SSLCertVerificationError("unable to get local issuer certificate")
         )
 
-        with mock.patch.object(paperarena, "_https_contexts", return_value=contexts):
+        with mock.patch.object(paper_search, "_https_contexts", return_value=contexts):
             with mock.patch.object(
-                paperarena.urllib.request,
+                paper_search.urllib.request,
                 "urlopen",
                 side_effect=[certificate_error, io.BytesIO(ARXIV_RESPONSE)],
             ) as urlopen:
-                titles = paperarena._fetch_arxiv_titles(["1503.06862"])
+                titles = paper_search._fetch_arxiv_titles(["1503.06862"])
 
         self.assertEqual(
             titles["1503.06862"],
@@ -56,14 +56,14 @@ class TlsFallbackTests(unittest.TestCase):
         contexts = [object(), object()]
         failures = [URLError("first"), URLError("second")]
 
-        with mock.patch.object(paperarena, "_https_contexts", return_value=contexts):
+        with mock.patch.object(paper_search, "_https_contexts", return_value=contexts):
             with mock.patch.object(
-                paperarena.urllib.request,
+                paper_search.urllib.request,
                 "urlopen",
                 side_effect=failures,
             ):
                 with self.assertRaisesRegex(URLError, "second"):
-                    paperarena._urlopen_with_tls_fallback("https://example.com", 1)
+                    paper_search._urlopen_with_tls_fallback("https://example.com", 1)
 
 
 if __name__ == "__main__":

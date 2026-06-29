@@ -1,4 +1,4 @@
-// PaperArena — HUD swipe deck over an always-on PDF background.
+// Paper Search — HUD swipe deck over an always-on PDF background.
 (function () {
   "use strict";
 
@@ -174,7 +174,7 @@
   function loadPdfDocument(lib, pdf) {
     // Prefer direct browser loading. arXiv and many open-access hosts send CORS
     // headers, and this avoids Python TLS certificate-store issues. If CORS or
-    // the remote host blocks direct access, fall back to PaperArena's same-origin
+    // the remote host blocks direct access, fall back to Paper Search's same-origin
     // proxy.
     var direct = pdf;
     var proxy = proxiedPdfUrl(pdf);
@@ -551,7 +551,7 @@
       }
       setupEvents();
     }).catch(function () {
-      placeholder.textContent = "Waiting for the local PaperArena server…";
+      placeholder.textContent = "Waiting for the local Paper Search server…";
       setupEvents();
     });
   }

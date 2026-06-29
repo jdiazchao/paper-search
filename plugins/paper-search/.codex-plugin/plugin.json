@@ -1,6 +1,6 @@
 {
-  "name": "paperarena",
-  "version": "0.1.0",
+  "name": "paper-search",
+  "version": "0.2.0",
   "description": "Discover and triage academic papers in a local swipe interface.",
   "author": {
     "name": "jdiazchao",
@@ -12,9 +12,9 @@
   "keywords": ["research", "papers", "discovery", "literature-review"],
   "skills": "./skills/",
   "interface": {
-    "displayName": "PaperArena",
+    "displayName": "Paper Search",
     "shortDescription": "Find and triage research papers by swiping.",
-    "longDescription": "PaperArena helps discover academic papers, presents them in a private local swipe interface, and uses saved feedback to refine later recommendations.",
+    "longDescription": "Paper Search helps discover academic papers, presents them in a private local swipe interface, and uses saved feedback to refine later recommendations.",
     "developerName": "jdiazchao",
     "category": "Productivity",
     "capabilities": ["Interactive", "Research"],

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PaperArena — local-host swipe deck for triaging candidate papers.
+"""Paper Search — local-host swipe deck for triaging candidate papers.
 
 Zero third-party dependencies. Python 3.8+ stdlib only.
 
@@ -241,7 +241,7 @@ def _fetch_arxiv_titles(arxiv_ids):
     if not unique:
         return {}
     url = "https://export.arxiv.org/api/query?id_list=" + ",".join(quote(v) for v in unique)
-    req = urllib.request.Request(url, headers={"User-Agent": "PaperArena/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "PaperSearch/1.0"})
     with _urlopen_with_tls_fallback(req, timeout=15) as resp:
         xml = resp.read()
     root = ElementTree.fromstring(xml)
@@ -657,7 +657,7 @@ class ArenaHandler(BaseHTTPRequestHandler):
             return self._send_json({"error": "blocked host"}, 403)
         req = urllib.request.Request(target, headers={
             "Accept": "application/pdf,*/*;q=0.8",
-            "User-Agent": "PaperArena/1.0",
+            "User-Agent": "PaperSearch/1.0",
         })
         try:
             with _urlopen_with_tls_fallback(req, timeout=30) as resp:
@@ -743,7 +743,7 @@ def _ensure_server(state, ui, port=DEFAULT_PORT, port_max=8799, open_browser=Fal
 
     selected_port = _find_available_port(port, port_max)
     if selected_port is None:
-        raise RuntimeError(f"no available PaperArena port in {port}-{port_max}")
+        raise RuntimeError(f"no available Paper Search port in {port}-{port_max}")
 
     log_path = os.path.join(state, "server.log")
     log = open(log_path, "ab")
@@ -774,10 +774,10 @@ def _ensure_server(state, ui, port=DEFAULT_PORT, port_max=8799, open_browser=Fal
         if _server_matches(health, state, ui):
             break
         if proc.poll() is not None:
-            raise RuntimeError(f"PaperArena server exited early; see {log_path}")
+            raise RuntimeError(f"Paper Search server exited early; see {log_path}")
         time.sleep(0.1)
     else:
-        raise RuntimeError(f"PaperArena server did not become ready; see {log_path}")
+        raise RuntimeError(f"Paper Search server did not become ready; see {log_path}")
 
     url = f"http://127.0.0.1:{selected_port}"
     _write_json_atomic(_server_record_path(state), {
@@ -829,7 +829,7 @@ def cmd_serve(args):
         "ui": ArenaHandler.ui_dir,
         "started_at": _now(),
     })
-    print(f"PaperArena serving {url}  (ui={ArenaHandler.ui_dir})", flush=True)
+    print(f"Paper Search serving {url}  (ui={ArenaHandler.ui_dir})", flush=True)
     if args.open:
         import webbrowser
         webbrowser.open(url)
@@ -898,7 +898,7 @@ def cmd_new_round(args):
             )
             notify_port = server["port"]
         except Exception as exc:
-            print(json.dumps({"error": f"could not start PaperArena server: {exc}"}), file=sys.stderr)
+            print(json.dumps({"error": f"could not start Paper Search server: {exc}"}), file=sys.stderr)
             return 1
     else:
         stored_port = _read_server_port(state, args.port)
@@ -1012,7 +1012,7 @@ def cmd_status(args):
 
 
 def main(argv=None):
-    p = argparse.ArgumentParser(prog="paperarena", description=__doc__,
+    p = argparse.ArgumentParser(prog="paper-search", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
 
@@ -1039,7 +1039,7 @@ def main(argv=None):
     n.add_argument("--port", type=int, default=DEFAULT_PORT, help="notify a running server on this port")
     n.add_argument("--port-max", type=int, default=8799, help="highest fallback port to try with --ensure-server")
     n.add_argument("--allow-seen", action="store_true", help="do not filter papers already liked/disliked")
-    n.add_argument("--ensure-server", action="store_true", help="start PaperArena if needed before returning")
+    n.add_argument("--ensure-server", action="store_true", help="start Paper Search if needed before returning")
     n.add_argument("--open", action="store_true", help="open the browser; implies --ensure-server")
     n.add_argument("--verify-links", action="store_true", help="verify arXiv candidate titles against arXiv metadata")
     n.set_defaults(func=cmd_new_round)

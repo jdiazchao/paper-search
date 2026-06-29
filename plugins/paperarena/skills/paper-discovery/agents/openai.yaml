@@ -1,4 +1,0 @@
-interface:
-  display_name: "PaperArena"
-  short_description: "Find and triage research papers by swiping"
-  default_prompt: "Use $paper-discovery to find papers on a topic and refine the recommendations from my swipe feedback."
