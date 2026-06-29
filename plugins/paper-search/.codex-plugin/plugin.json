@@ -1,6 +1,6 @@
 {
   "name": "paper-search",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Discover and triage academic papers in a local swipe interface.",
   "author": {
     "name": "jdiazchao",
@@ -18,6 +18,8 @@
     "developerName": "jdiazchao",
     "category": "Productivity",
     "capabilities": ["Interactive", "Research"],
+    "logo": "./assets/logo.png",
+    "logoDark": "./assets/logo-dark.png",
     "defaultPrompt": [
       "Find papers about a topic and let me triage them.",
       "Refine my paper recommendations from my feedback."
